@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+  
+        <div *ngIf="menus.length > 0 ; else Empty">
+          <div class=" col-3" *ngFor="let menu of menus">
+           <div class="card" style="width: 17rem;" >
+                <img src="menu.image" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h3 class="card-title">{{menu.name}}</h3>
+                  <h5 class="card-title">{{menu.description}}</h5>
+                  <h5 class="card-title">{{menu.price}}</h5>
+                  
+                </div>
+              </div>
+          </div>
+  
+        </div>
+        <ng-template #Empty>
+          <div class="alert alert-primary" role="alert">
+            There are currently no mnus. <a routerLink="/restuarnt">Try it later</a>.
+          </div>
+        </ng-template>
+  
+       
+      
+    </div>
+  </div>

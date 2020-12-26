@@ -1,0 +1,37 @@
+<nav class="navbar navbar-light bg-light">
+    <input class="form-control mr-sm-2" type="search"  placeholder="Search By Name" aria-label="Search"
+       #myinput [(ngModel)]="name"   (input)="search()"
+       > 
+ </nav>
+ <div *ngIf="restaurants.length > 0 ; else Empty">
+ <div class="container">
+     <div class="row">
+
+        
+           <div class=" col-3" *ngFor="let rest of restaurants">
+            <div class="card" style="width: 17rem;" >
+                 <img src="{{rest.image}}" class="card-img-top" alt="...">
+                 <div class="card-body">
+                   <h3 class="card-title">{{rest.name}}</h3>
+                   <h5 class="card-title"> {{rest.city}}</h5>
+                   <button><a routerLink="/menu/{{rest.id}}"><i class="fas fa-bars"></i></a></button>
+                   <button><a routerLink="/update/{{rest.id}}"><i class="fas fa-edit"></i></a></button>
+                   <button><i class="fas fa-star"></i>  </button>
+                   <button  (click)="Remove(rest)" ><i class="fas fa-trash" style="color: red;"></i></button>
+                 </div>
+               </div>
+           </div>
+
+        
+
+        
+       
+     </div>
+</div>
+</div>
+<ng-template #Empty>
+ <div class="alert alert-primary" role="alert">
+   There are currently no restaurants. Try it later.
+ </div>
+</ng-template>
+ 
