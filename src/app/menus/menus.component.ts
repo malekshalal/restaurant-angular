@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
+import { Menu } from '../menu';
 
 @Component({
   selector: 'app-menus',
@@ -10,14 +11,20 @@ import { DataService } from '../data.service';
 export class MenusComponent implements OnInit {
   menus:any=[];
   id:any;
-  constructor(private service:DataService,private rout:ActivatedRoute) { }
+  constructor(private service:DataService,private rout:ActivatedRoute) { 
+    
+   }
 
   ngOnInit(): void {
-     this.rout.params.subscribe(d=>{
+    this.rout.params.subscribe(d=>{
       this.id=d['id']
-      this.menus= this.service.showmenus(this.id);
+      
+   })
+   this.service.showmenus(this.id).subscribe((men:any)=>this.menus=men)
     
-    })
+
   }
+
+  
 
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { Rate } from '../rate';
 import { Restaurant } from '../restaurant';
 
 @Component({
@@ -11,6 +12,10 @@ export class ListRestaurantComponent implements OnInit {
   restaurants:Restaurant[]=[];
   name:any;
   errorMessage: any;
+  max=10;
+  rating:Rate=new Rate();
+  currentRate:number;
+
  
   constructor(private service:DataService) { }
  
@@ -39,5 +44,18 @@ export class ListRestaurantComponent implements OnInit {
       location.reload();
         })
   }
+
+  @Input()
+  rest:Restaurant;
+  onRateChange(x:number,rest:Restaurant){
+    this.rating.customer_id=1;
+    this.rating.rating=x;
+    this.rating.rest_id=rest.id;
+    this.service.AddRating(this.rating).subscribe(
+      (r:number)=>this.currentRate=r
+    );
+
+  }
+
 
 }

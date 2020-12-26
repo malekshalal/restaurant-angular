@@ -10,14 +10,16 @@
         
            <div class=" col-3" *ngFor="let rest of restaurants">
             <div class="card" style="width: 17rem;" >
-                 <img src="{{rest.image}}" class="card-img-top" alt="...">
+                 <img src="{{rest.image}}" class="card-img-top" alt="..."style=" height=250px;">
                  <div class="card-body">
                    <h3 class="card-title">{{rest.name}}</h3>
                    <h5 class="card-title"> {{rest.city}}</h5>
                    <button><a routerLink="/menu/{{rest.id}}"><i class="fas fa-bars"></i></a></button>
                    <button><a routerLink="/update/{{rest.id}}"><i class="fas fa-edit"></i></a></button>
-                   <button><i class="fas fa-star"></i>  </button>
+                   
+                  
                    <button  (click)="Remove(rest)" ><i class="fas fa-trash" style="color: red;"></i></button>
+                   <ngb-rating [max]="5" [(rate)]="currentRate"  [readonly]="false"  (rateChange)="onRateChange($event , rest)" ></ngb-rating>
                  </div>
                </div>
            </div>

@@ -12,14 +12,15 @@ import { Router } from '@angular/router';
 })
 export class UpdateComponent implements OnInit {
   
-  imageurl: string="/assets/img/1.jpg";
+
   fileToUpload :any=null;
 
-    form=new FormGroup({
-    rest_id:new FormControl(null),
-    name:new FormControl('',[Validators.required,Validators.maxLength(40)] ),
-    descr:new FormControl(null),
-    price:new FormControl(null),
+  form=new FormGroup({
+    name:new FormControl('',[Validators.required,Validators.maxLength(40)]),
+    city:new FormControl(null),
+    street:new FormControl(null),
+    lat:new FormControl(null),
+    lng:new FormControl(null),
     image:new FormControl(null)
     })
 
@@ -34,12 +35,12 @@ export class UpdateComponent implements OnInit {
     this.service.getcurrentRest(this.rout.snapshot.params.id)
     .subscribe(res=>{
       this.form=new FormGroup({
-        name:new FormControl(['name'],[Validators.required,Validators.maxLength(40)] ),
-        city:new FormControl(['city']),
-        street:new FormControl(['street']),
-        lat:new FormControl(['lat']),
-        lng:new FormControl(['lng']),
-        image:new FormControl(['image'])
+        name:new FormControl(res['name'],[Validators.required,Validators.maxLength(40)] ),
+        city:new FormControl(res['city']),
+        street:new FormControl(res['street']),
+        lat:new FormControl(res['lat']),
+        lng:new FormControl(res['lng']),
+        image:new FormControl(res['image'])
         })
       
     })

@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { element } from 'protractor';
 import { Observable } from 'rxjs';
 import { Menu } from './menu';
+import { Rate } from './rate';
 import { Restaurant } from './restaurant';
 
 
@@ -10,13 +12,14 @@ import { Restaurant } from './restaurant';
 })
 export class DataService {
   
-  
+  menus:any;
   restaurantURL:string="http://localhost:3000/restaurant";
   menuURL:string="http://localhost:3000/menu"
+  rateURl="http://localhost:3000/rate"
 
   //resturants:any=[new Restaurant(1,"k","m","r",5,6,"/assets/img/ppu.png")];
-  menu:Menu[]=[];
-  restaurants:Restaurant[]=[];
+  
+  
 
 
   
@@ -85,7 +88,7 @@ deletRestaurant(id: number): Observable<object> {
 //sevice menu
 
 getmenu (){
-  return this.menu;
+  return this.http.get(this.menuURL)
 }
 
 
@@ -94,15 +97,22 @@ return this.http.post(this.menuURL,menu)
 
 
 }
-
-showmenus(id:any){
-let menus: any[]=[];
-
-
-this.http.get(this.menuURL+"/"+id)
-return menus;
+showmenus(id:number){
+ return this.http.get(this.menuURL+"/"+id)
+  
+  
 }
 
+
+
+
+AddRating(rate:Rate):Observable<Object>{
+  const httpOptions={headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  })}
+  
+return this.http.post(this.rateURl,rate,httpOptions);
+}
 
 
 }

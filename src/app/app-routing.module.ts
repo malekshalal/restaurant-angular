@@ -8,7 +8,11 @@ import { MenusComponent } from './menus/menus.component';
 import { UpdateComponent } from './update/update.component';
 
 const routes: Routes = [
-  
+  {
+    path: '',
+    redirectTo: '/restuarnt',
+    pathMatch: 'full'
+},
   {path:"creat/0",component:AddRestaurantComponent},
   {path:"restuarnt",component:ListRestaurantComponent},
   {path:"addMenu",component:AddMenuComponent},

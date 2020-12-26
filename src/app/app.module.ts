@@ -11,6 +11,10 @@ import { AddMenuComponent } from './add-menu/add-menu.component';
 import { MenusComponent } from './menus/menus.component';
 import { UpdateComponent } from './update/update.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { RatingComponent } from './rating/rating.component';
+import { OrdrComponent } from './ordr/ordr.component';
+import { OrderitemComponent } from './orderitem/orderitem.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,14 +24,18 @@ import {ReactiveFormsModule} from '@angular/forms';
     ListRestaurantComponent,
     AddMenuComponent,
     MenusComponent,
-    UpdateComponent
+    UpdateComponent,
+    RatingComponent,
+    OrdrComponent,
+    OrderitemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
